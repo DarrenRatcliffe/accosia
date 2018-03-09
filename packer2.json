@@ -20,7 +20,7 @@
         "type": "file",
         "source": "/var/lib/jenkins/jobs/Accosia/workspace/playbook.yml",
         "destination": "playbook.yml"
-      }
+      },
       {
         "type": "shell",
         "inline": [
