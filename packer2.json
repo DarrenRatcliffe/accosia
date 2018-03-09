@@ -11,8 +11,8 @@
         "ami_description": "This is a certified Atos cloud image (add OS and OS version",
         "ami_regions": "eu-west-2",
         "tags": {
-            "based_on_ami": "{{.SourceAMI}}",
-            "Produced_by": "Atos SE"
+          "based_on_ami": "{{.SourceAMI}}",
+          "Produced_by": "Atos SE"
         }
     }],
     "provisioners": [
@@ -30,7 +30,8 @@
           "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
           "galaxycommand": "ansible-galaxy install git+https://github.com/openstack/ansible-hardening",
           "staging_directory": "/tmp/accosia",
-          "command": "ansible-playbook playbook.yml"
+          "command": "ansible-playbook",
+          "extra_arguments": ""
       }
     ]
   }
