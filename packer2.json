@@ -17,11 +17,6 @@
     }],
     "provisioners": [
       {
-        "type": "file",
-        "source": "/var/lib/jenkins/jobs/Accosia/workspace/",
-        "destination": "/tmp"
-      },
-      {
         "type": "shell",
         "inline": [
           "sleep 30",
@@ -33,7 +28,8 @@
       },
       {
         "type": "ansible-local",
-        "playbook_file": "playbook.yml"
+        "playbook_file": "playbook.yml",
+        "playbook_directory": "/var/lib/jenkins/jobs/Accosia/workspace/"
       }
     ]
   }
