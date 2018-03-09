@@ -23,7 +23,7 @@
           "sudo yum update -y",
           "sudo yum install git -y",
           "sudo yum install ansible --enablerepo=epel --enablerepo=epel-testing -y",
-          "sudo ansible-galaxy install dev-sec.os-hardening"
+          "ansible-galaxy install dev-sec.os-hardening"
         ]
       },
       {
@@ -31,8 +31,7 @@
           "playbook_file": "playbook.yml",
           "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
           "staging_directory": "/tmp/accosia",
-          "command": "ansible-playbook",
-          "role_paths": "/root/.ansible/roles"
+          "command": "ansible-playbook"
       }
     ]
   }
