@@ -6,7 +6,7 @@
         "region": "us-east-1",
         "source_ami": "ami-66506c1c",
         "instance_type": "t2.micro",
-        "ssh_username": "ec2-user",
+        "ssh_username": "ubuntu",
         "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
         "ami_description": "This is a certified Atos cloud image (add OS and OS version",
         "ami_regions": "eu-west-2",
