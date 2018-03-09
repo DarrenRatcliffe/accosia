@@ -18,8 +18,8 @@
     "provisioners": [
       {
         "type": "file",
-        "source": "playbook.yml",
-        "destination": "/tmp/playbook.yml"
+        "source": "/var/lib/jenkins/jobs/Accosia/workspace/",
+        "destination": "/tmp"
       },
       {
         "type": "shell",
@@ -33,7 +33,7 @@
       },
       {
         "type": "ansible-local",
-        "playbook_file": "playbook.yml"
+        "playbook_file": "/tmp/playbook.yml"
       }
     ]
   }
