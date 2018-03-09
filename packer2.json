@@ -31,8 +31,8 @@
           "playbook_file": "playbook.yml",
           "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
           "staging_directory": "/tmp/accosia",
-          "command": "ansible-playbook --check",
-          "extra_arguments": ""
+          "command": "ansible-playbook",
+          "role_paths": "/root/.ansible/roles"
       }
     ]
   }
