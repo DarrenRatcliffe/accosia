@@ -29,7 +29,7 @@
       {
         "type": "ansible-local",
         "playbook_file": "playbook.yml",
-        "playbook_directory": "/var/lib/jenkins/jobs/Accosia/workspace/"
+        "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/"
       }
     ]
   }
