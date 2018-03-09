@@ -4,4 +4,4 @@
   hosts: all
   become: yes
   roles:
-    - blackbaud.linux-hardening
+    - dev-sec.os-hardening
