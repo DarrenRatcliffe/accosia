@@ -33,7 +33,7 @@
       },
       {
         "type": "ansible-local",
-        "playbook_file": "tmp/playbook.yml"
+        "playbook_file": "playbook.yml"
       }
     ]
   }
