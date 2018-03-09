@@ -15,7 +15,9 @@
     "ami_description": "This is a certified Atos cloud image (add OS and OS version",
     "ami_regions": "eu-west-2",
     "tags": {
-	           "based_on_ami": "{{.SourceAMI}}"
+	    "based_on_ami": "{{.SourceAMI}}"
+	    "Produced_by": "Atos SE"
+    }
   }],
   "provisioners": [{
     "type": "shell",
