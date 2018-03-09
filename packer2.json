@@ -26,10 +26,11 @@
       },
       {
         "type": "ansible-local",
-        "playbook_file": "playbook.yml",
-        "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
-        "galaxycommand": "ansible-galaxy install git+https://github.com/openstack/ansible-hardening",
-        "staging_directory": "/tmp/accosia"
+          "playbook_file": "playbook.yml",
+          "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
+          "galaxycommand": "ansible-galaxy install git+https://github.com/openstack/ansible-hardening",
+          "staging_directory": "/tmp/accosia",
+          "command": "ansible-playbook playbook.yml"
       }
     ]
   }
