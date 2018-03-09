@@ -2,6 +2,6 @@
 
 - name: Harden all systems
   hosts: all
-  become: yes
+  become: root
   roles:
     - dev-sec.os-hardening
