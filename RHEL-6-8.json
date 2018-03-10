@@ -20,9 +20,10 @@
         "type": "shell",
         "inline": [
           "sleep 30",
-          "sudo hostnamectl",
+          "sudo cat /etc/os-release",
           "sudo yum update -y",
-          "sudo yum install ansible --enablerepo=epel --enablerepo=epel-testing -y",
+          "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
+          "sudo yum install ansible -y",
           "sudo ansible-galaxy install git+https://github.com/openstack/ansible-hardening"
         ]
       },
