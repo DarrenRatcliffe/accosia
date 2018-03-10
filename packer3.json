@@ -2,7 +2,7 @@
     "builders": [
         {
             "access_key": "{{user `aws_access_key`}}",
-            "ami_name": "packer-linux-aws-demo-{{timestamp}}",
+            "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
             "instance_type": "t2.micro",
             "region": "us-east-1",
             "secret_key": "{{user `aws_secret_key`}}",
@@ -16,7 +16,15 @@
               "most_recent": true
             },
             "ssh_username": "ubuntu",
-            "type": "amazon-ebs"
+            "ami_description": "This is a certified Atos cloud image (Ubuntu 16.04 amd64)",
+            "type": "amazon-ebs",
+            "tags": {
+                "Based on ami id": "{{.SourceAMI}}",
+                "Produced by": "Atos SE",
+                "OS Type": "Ubuntu",
+                "OS Version": "16.04",
+                "Processor Arch.": "amd64"
+            }
         }
     ],
     "provisioners": [
