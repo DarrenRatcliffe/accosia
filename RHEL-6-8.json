@@ -1,4 +1,8 @@
 {
+    "variables": {
+        "BaseOS": "RHEL",
+        "OSversion": "6.8"
+    },
     "builders": [{
         "type": "amazon-ebs",
         "access_key": "{{user `aws_access_key`}}",
@@ -8,11 +12,13 @@
         "instance_type": "t2.micro",
         "ssh_username": "ec2-user",
         "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
-        "ami_description": "This is a certified Atos cloud image (add OS and OS version",
+        "ami_description": "This is a certified Atos cloud image for {{user 'BaseOS'}} {{user 'OSversion'}}",
         "ami_regions": "eu-west-2",
         "tags": {
-            "based_on_ami": "{{.SourceAMI}}",
-            "Produced_by": "Atos SE"
+            "Based on ami id": "{{.SourceAMI}}",
+            "Produced by": "Atos SE",
+            "Base OS": "{{user 'BaseOS'}}",
+            "OS version": "{{user 'OSversion'}}"
         }
     }],
     "provisioners": [
