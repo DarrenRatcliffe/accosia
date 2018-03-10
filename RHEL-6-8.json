@@ -23,12 +23,17 @@
     }],
     "provisioners": [
       {
+        "type": "file",
+        "source": "scripts/os-type.sh",
+         "destination": "/tmp/os-type.sh"
+      },
+      {
         "type": "shell",
         "expect_disconnect": "true",
         "inline": [
           "sleep 30",
           "sudo uname -srv",
-          "source scripts/os-type.sh",
+          "source /tmp/os-type.sh",
           "get_distribution_type",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
