@@ -12,13 +12,13 @@
         "instance_type": "t2.micro",
         "ssh_username": "ec2-user",
         "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
-        "ami_description": "This is a certified Atos cloud image for {{user 'os'}} {{user 'os_version'}}",
+        "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
         "ami_regions": "eu-west-2",
         "tags": {
             "Based on ami id": "{{.SourceAMI}}",
             "Produced by": "Atos SE",
-            "Base OS": "{{user 'os'}}",
-            "OS version": "{{user 'os_version'}}"
+            "Base OS": "{{user `os`}}",
+            "OS version": "{{user `os_version`}}"
         }
     }],
     "provisioners": [
