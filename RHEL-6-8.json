@@ -1,7 +1,7 @@
 {
     "variables": {
-        "BaseOS": "RHEL",
-        "OSversion": "6.8"
+        "base-os": "RHEL",
+        "os-version": "6.8"
     },
     "builders": [{
         "type": "amazon-ebs",
@@ -12,13 +12,13 @@
         "instance_type": "t2.micro",
         "ssh_username": "ec2-user",
         "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
-        "ami_description": "This is a certified Atos cloud image for {{user 'BaseOS'}} {{user 'OSversion'}}",
+        "ami_description": "This is a certified Atos cloud image for {{user 'base-os'}} {{user 'os-version'}}",
         "ami_regions": "eu-west-2",
         "tags": {
             "Based on ami id": "{{.SourceAMI}}",
             "Produced by": "Atos SE",
-            "Base OS": "{{user 'BaseOS'}}",
-            "OS version": "{{user 'OSversion'}}"
+            "Base OS": "{{user 'base-os'}}",
+            "OS version": "{{user 'os-version'}}"
         }
     }],
     "provisioners": [
