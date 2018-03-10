@@ -28,8 +28,8 @@
         "inline": [
           "sleep 30",
           "sudo uname -srv",
-          "sudo source /var/lib/jenkins/jobs/Accosia/workspace/scripts/os-type.sh",
-          "sudo get_distribution_type",
+          "source /var/lib/jenkins/jobs/Accosia/workspace/scripts/os-type.sh",
+          "get_distribution_type",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
           "sudo yum install git -y",
