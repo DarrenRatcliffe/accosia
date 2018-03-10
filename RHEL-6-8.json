@@ -24,7 +24,7 @@
     "provisioners": [
       {
         "type": "shell",
-        "inline": ["sleep 30"]
+        "inline": ["sleep 30"],
         "script": "{{template_dir}}/scripts/os-type.sh",
         "inline": [
           "sudo uname -srv",
