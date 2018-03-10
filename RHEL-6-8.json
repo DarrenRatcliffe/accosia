@@ -20,6 +20,7 @@
         "type": "shell",
         "inline": [
           "sleep 30",
+          "sudo hostnamectl",
           "sudo yum update -y",
           "sudo yum install ansible --enablerepo=epel --enablerepo=epel-testing -y",
           "sudo ansible-galaxy install git+https://github.com/openstack/ansible-hardening"
