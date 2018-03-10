@@ -24,10 +24,10 @@
     "provisioners": [
       {
         "type": "shell",
+        "sleep 30",
+        "script": "{{template_dir}}/scripts/os-type.sh",
         "inline": [
-          "sleep 30",
           "sudo uname -srv",
-          "sudo {{template_dir}}/scripts/os-type.sh",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
           "sudo yum install git -y",
