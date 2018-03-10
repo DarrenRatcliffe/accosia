@@ -33,7 +33,7 @@
         "inline": [
           "sleep 30",
           "sudo uname -srv",
-          "sudo /tmp/os-type.sh",
+          "/tmp/os-type.sh",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
           "sudo yum install git -y",
