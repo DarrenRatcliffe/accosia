@@ -23,6 +23,7 @@
           "sudo uname -srv",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
+          "sudo yum install git -y",
           "sudo yum install ansible -y",
           "sudo ansible-galaxy install git+https://github.com/openstack/ansible-hardening"
         ]
