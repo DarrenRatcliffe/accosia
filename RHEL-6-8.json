@@ -28,7 +28,7 @@
         "inline": [
           "sleep 30",
           "sudo uname -srv",
-          "source /var/lib/jenkins/jobs/Accosia/workspace/scripts/os-type.sh",
+          "source scripts/os-type.sh",
           "get_distribution_type",
           "sudo yum update -y",
           "sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm",
