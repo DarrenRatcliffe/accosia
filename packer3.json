@@ -1,4 +1,8 @@
 {
+    "variables": {
+        "os": "Ubuntu",
+        "os_version": "16.04"
+    },
     "builders": [
         {
             "access_key": "{{user `aws_access_key`}}",
@@ -16,15 +20,19 @@
               "most_recent": true
             },
             "ssh_username": "ubuntu",
-            "ami_description": "This is a certified Atos cloud image (Ubuntu 16.04 amd64)",
+            "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
             "type": "amazon-ebs",
             "tags": {
                 "Based on ami id": "{{.SourceAMI}}",
                 "Produced by": "Atos SE",
-                "OS Type": "Ubuntu",
-                "OS Version": "16.04",
+                "OS Type": "{{user `os`}}",
+                "OS Version": "{{user `os_version`}}",
                 "Processor Arch.": "amd64",
-                "Jenkins build number": "{{user `jenkins-build-no`}}"
+                "Jenkins build number": "{{user `jenkins-build-no`}}",
+                "Jenkins build URL": "{{user `jenkins-build-url`}}",
+                "Git Commit": "{{user `git-commit`}}",
+                "Git URL": "{{user `git-url`}}"
+
             }
         }
     ],
