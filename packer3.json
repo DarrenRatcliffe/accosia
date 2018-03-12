@@ -24,7 +24,7 @@
                 "OS Type": "Ubuntu",
                 "OS Version": "16.04",
                 "Processor Arch.": "amd64",
-                "Jenkins build number": "{{user `jenkins-build-no`"
+                "Jenkins build number": "{{user `jenkins-build-no`}}"
             }
         }
     ],
