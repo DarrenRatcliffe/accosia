@@ -1,0 +1,7 @@
+Create job backup:
+java -jar c:\k8s\jenkins-cli.jar -s http://jenkins-myproject.10.0.75.2.nip.io/ get-job accosia > accosia2.xml
+
+Load job backup:
+java -jar c:\k8s\jenkins-cli.jar -s http://jenkins-myproject.10.0.75.2.nip.io/ create-job accosia2 < accosia2.xml
+
+(use CMD)
