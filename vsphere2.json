@@ -1,0 +1,60 @@
+{
+  "variables": {
+    "vsphere_password": "Pass123!",
+    "guest_password": "Joanne!7"
+  },
+
+  "builders": [
+    {
+      "type": "vsphere",
+
+      "vcenter_server": "home.djsho.co.uk",
+      "username": "administrator@vsphere.local",
+      "password": "{{user `vsphere_password`}}",
+      "insecure_connection": true,
+      "datacenter": "AtosRemoteLab",
+
+      "template": "inno/CentOS-Template",
+      "vm_name": "accosia-build-{{isotime}}",
+      "folder": "inno",
+      "host": "172.16.10.11",
+      "resource_pool": "",
+      "datastore": "LocalLUN",
+      "linked_clone": false,
+
+      "CPUs": 2,
+      "CPU_reservation": 1000,
+      "CPU_limit": 2000,
+      "RAM": 8192,
+      "RAM_reservation": 2048,
+
+      "ssh_username": "root",
+      "ssh_password": "{{user `guest_password`}}",
+
+      "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
+      "shutdown_timeout": "5m",
+      "create_snapshot": true,
+      "convert_to_template": true
+    }
+  ],
+
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "sleep 30",
+          "sudo yum update -y",
+          "sudo yum install git -y",
+          "sudo yum install ansible --enablerepo=epel --enablerepo=epel-testing -y",
+          "ansible-galaxy install dev-sec.os-hardening"
+        ]
+      },
+      {
+        "type": "ansible-local",
+          "playbook_file": "playbook.yml",
+          "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
+          "staging_directory": "/tmp/accosia",
+          "command": "ansible-playbook"
+      }
+    ]
+}
