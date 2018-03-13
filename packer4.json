@@ -1,0 +1,11 @@
+{
+    "variables": {
+        "os": "Ubuntu",
+        "os_version": "16.04"
+    },
+    "builders": [
+        {
+            "type": "vsphere"
+        }
+    ]
+}
