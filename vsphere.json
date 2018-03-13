@@ -9,18 +9,18 @@
       "type": "vsphere",
 
       "vcenter_server": "home.djsho.co.uk",
-      "username": "Administrator",
+      "username": "administrator@vsphere.local",
       "password": "{{user `vsphere_password`}}",
       "insecure_connection": true,
       "datacenter": "AtosRemoteLab",
 
-      "template": "AtosRemoteLab/inno/CentOS-Template",
-      "vm_name": "vm-1",
+      "template": "inno/CentOS-Template",
+      "vm_name": "accosia-build-{{isotime}}",
       "folder": "inno",
-      "host": "AtosRemoteLab/172.16.10.11",
+      "host": "172.16.10.11",
       "resource_pool": "",
-      "datastore": "LocalLun",
-      "linked_clone": true,
+      "datastore": "LocalLUN",
+      "linked_clone": false,
 
       "CPUs": 2,
       "CPU_reservation": 1000,
@@ -38,15 +38,12 @@
     }
   ],
 
-  "provisioners": [
+  "provisioners": [     
     {
       "type": "shell",
-      "environment_vars": [
-        "DEBIAN_FRONTEND=noninteractive"
-      ],
       "execute_command": "echo '{{user `guest_password`}}' | {{.Vars}} sudo -ES bash -eux '{{.Path}}'",
       "inline": [
-        "apt-get install -y zip"
+        "sudo yum update -y"
       ]
     }
   ]
