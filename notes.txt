@@ -1,3 +1,5 @@
+Packer version 1.1.2 until 1.2.2 shis for testing
+
 Create job backup:
 java -jar c:\k8s\jenkins-cli.jar -s http://jenkins-myproject.10.0.75.2.nip.io/ get-job accosia > accosia2.xml
 
@@ -5,3 +7,5 @@ Load job backup:
 java -jar c:\k8s\jenkins-cli.jar -s http://jenkins-myproject.10.0.75.2.nip.io/ create-job accosia2 < accosia2.xml
 
 (use CMD)
+
+-var aws_access_key=$Key -var aws_secret_key=$Secret -var jenkins-build-no=$BUILD_NUMBER -var jenkins-build-url=$JENKINS_URL -var git-commit=$GIT_COMMIT -var git-url=$GIT_URL
