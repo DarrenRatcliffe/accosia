@@ -6,7 +6,7 @@
 
   "builders": [
     {
-      "type": "vsphere",
+      "type": "vsphere-iso",
 
       "vcenter_server": "home.djsho.co.uk",
       "username": "administrator@vsphere.local",
