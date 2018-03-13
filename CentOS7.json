@@ -15,11 +15,12 @@
             "filters": {
             "virtualization-type": "hvm",
             "name": "*CentOS*7*",
-            "root-device-type": "ebs"
+            "root-device-type": "ebs",
+            "is-public": true
             },
             "owners": ["679593333241"],
-            "most_recent": true,
-            "is-public": true
+            "most_recent": true
+            
         },
         "ssh_username": "ubuntu",
         "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
