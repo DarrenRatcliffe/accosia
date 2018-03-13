@@ -52,7 +52,7 @@
       {
         "type": "ansible-local",
           "playbook_file": "playbook.yml",
-          "playbook_dir": "/var/lib/jenkins/jobs/Accosia/workspace/",
+          "playbook_dir": "/var/lib/jenkins/jobs/accosia/workspace/",
           "staging_directory": "/tmp/accosia",
           "command": "ansible-playbook"
       }
