@@ -11,7 +11,7 @@
         "instance_type": "t2.micro",
         "region": "us-east-1",
         "secret_key": "{{user `aws_secret_key`}}",
-        "source_ami": "ami-4bf3d731",
+        "source_ami": "ami-02e98f78",
         "ssh_username": "centos",
         "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
         "type": "amazon-ebs",
