@@ -14,7 +14,7 @@
         "source_ami_filter": {
             "filters": {
             "virtualization-type": "hvm",
-            "name": "*CentOS*7*",
+            "name": "CentOS/images/*CentOS*7*",
             "root-device-type": "ebs"
             },
             "owners": ["679593333241"],
