@@ -1,7 +1,9 @@
 {
   "variables": {
     "vsphere_password": "Pass123!",
-    "guest_password": "Joanne!7"
+    "guest_password": "Joanne!7",
+    "os": "CentOS",
+    "os_version": "7"
   },
 
   "builders": [
