@@ -1,0 +1,38 @@
+{
+  "builders": [{
+    "type": "azure-arm",
+
+    "client_id": "bd0bce44-7754-4957-b1ea-80002f499bf8",
+    "client_secret": "P@ssw0rd!",
+    "resource_group_name": "packer",
+    "storage_account": "packerstorageatos",
+    "subscription_id": "ac9a340b-c22b-47da-b34e-7af8a282615f",
+    "tenant_id": "de74a8a5-d4cd-4beb-afd7-27e21a379a5b",
+    "object_id": "3b71528e-73a0-4c0f-bac0-cf8630a9acd0",
+
+    "capture_container_name": "images",
+    "capture_name_prefix": "packer",
+
+    "os_type": "Linux",
+    "image_publisher": "Canonical",
+    "image_offer": "UbuntuServer",
+    "image_sku": "14.04.4-LTS",
+
+    "azure_tags": {
+      "dept": "engineering"
+    },
+
+    "location": "UK South",
+    "vm_size": "Standard_A2"
+  }],
+  "provisioners": [
+   {
+     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+     "inline": [
+       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+     ],
+     "inline_shebang": "/bin/sh -x",
+     "type": "shell"
+   }
+ ]
+}
