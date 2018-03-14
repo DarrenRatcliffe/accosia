@@ -9,7 +9,7 @@
     "subscription_id": "ac9a340b-c22b-47da-b34e-7af8a282615f",
     "tenant_id": "de74a8a5-d4cd-4beb-afd7-27e21a379a5b",
     "object_id": "3b71528e-73a0-4c0f-bac0-cf8630a9acd0",
-
+    "managed_image_name": "accosia-build-{{isotime}}",
     "capture_container_name": "images",
     "capture_name_prefix": "packer",
 
