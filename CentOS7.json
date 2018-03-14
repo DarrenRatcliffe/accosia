@@ -69,9 +69,7 @@
           "sudo yum install git -y",
           "sudo yum install epel-release -y",
           "sudo yum install ansible -y",
-          "sudo chown -R /etc/ansible",
-          "sudo chown -R /usr/share/ansible",
-          "ansible-galaxy install dev-sec.os-hardening"
+          "sudo ansible-galaxy install dev-sec.os-hardening -p /usr/share/ansible/roles/"
         ]
       },
       {
