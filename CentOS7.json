@@ -92,7 +92,7 @@
     "RAM": 8192,
     "RAM_reservation": 2048,
 
-    "ssh_username": "{{user `ssh_user`}}",
+    "ssh_username": "root",
     "ssh_password": "{{user `guest_password`}}",
 
     "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
