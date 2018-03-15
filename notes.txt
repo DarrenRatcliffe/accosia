@@ -8,4 +8,33 @@ java -jar c:\k8s\jenkins-cli.jar -s http://jenkins-myproject.10.0.75.2.nip.io/ c
 
 (use CMD)
 
--var aws_access_key=$Key -var aws_secret_key=$Secret -var jenkins-build-no=$BUILD_NUMBER -var jenkins-build-url=$JENKINS_URL -var git-commit=$GIT_COMMIT -var git-url=$GIT_URL
+-var aws_access_key=$Key -var aws_secret_key=$Secret -var aws-ami="ami-23aa8159" -var jenkins-build-no=$BUILD_NUMBER -var jenkins-build-url=$JENKINS_URL -var git-commit=$GIT_COMMIT -var git-url=$GIT_URL
+
+
+
+pwd
+
+wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v1.6/packer-builder-vsphere.linux
+
+chmod 777 /var/lib/jenkins/jobs/accosia3/workspace/packer-builder-vsphere.linux
+ls -l
+
+
+azure subscription id: ac9a340b-c22b-47da-b34e-7af8a282615f
+
+az account list-locations
+
+region: UK South
+RG: packer
+
+
+Parameter	Where to obtain
+client_id	    bd0bce44-7754-4957-b1ea-80002f499bf8
+client_secret	P@ssw0rd!
+tenant_id	    de74a8a5-d4cd-4beb-afd7-27e21a379a5b
+subscription_id	ac9a340b-c22b-47da-b34e-7af8a282615f
+object_id	    3b71528e-73a0-4c0f-bac0-cf8630a9acd0
+managed_image_resource_group_name	packer
+managed_image_name	    Name for the managed disk image that is created
+
+-var aws_access_key=$Key -var aws_secret_key=$Secret -var aws-ami=ami-23aa8159 -var jenkins-build-no=$BUILD_NUMBER -var jenkins-build-url=$JENKINS_URL -var git-commit=$GIT_COMMIT -var git-url=$GIT_URL -var az_client_id=bd0bce44-7754-4957-b1ea-80002f499bf8 -var az_client_secret=P@ssw0rd! -var az_sub_id=ac9a340b-c22b-47da-b34e-7af8a282615f -var az_ten_id=de74a8a5-d4cd-4beb-afd7-27e21a379a5b -var az_obj_id=3b71528e-73a0-4c0f-bac0-cf8630a9acd0
