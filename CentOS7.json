@@ -46,7 +46,7 @@
         "Git Commit": "{{user `git-commit`}}",
         "Git URL": "{{user `git-url`}}"
         },
-        "image_name": "accosia-build-{{isotime}}",
+        "image_name": "accosia-build-{{timestamp}}",
         "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}"
     },
     {
