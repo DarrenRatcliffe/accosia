@@ -1,0 +1,38 @@
+{
+  "builders": [{
+    "type": "azure-arm",
+
+    "client_id": "{{user `az_client_id`}}",
+    "client_secret": "{{user `az_client_secret`}}",
+    "resource_group_name": "packer",
+    "storage_account": "packerstorageatos",
+    "subscription_id": "{{user `az_sub_id`}}",
+    "tenant_id": "{{user `az_ten_id`}}",
+    "object_id": "{{user `az_obj_id`}}",
+    "capture_container_name": "images",
+    "capture_name_prefix": "packer",
+
+    "os_type": "Linux",
+    "image_publisher": "OpenLogic",
+    "image_offer": "CentOS",
+    "image_sku": "7.3",
+
+    "azure_tags": {
+      "dept": "engineering"
+    },
+
+    "location": "UK South",
+    "vm_size": "Standard_A2"
+  }],
+  "provisioners": [
+   {
+     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+     "inline": [
+       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+     ],
+     "inline_shebang": "/bin/sh -x",
+     "type": "shell",
+     "only": ["azure-arm"]
+   }
+ ]
+}

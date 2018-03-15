@@ -3,83 +3,130 @@
     "vsphere_password": "Pass123!",
     "guest_password": "Joanne!7",
     "os": "CentOS",
-    "os_version": "7"
+    "os_version": "7",
+    "ssh_user": "centos",
+    "ssh_pass": null
   },
 
-  "builders": [
-    {
-        "access_key": "{{user `aws_access_key`}}",
-        "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
-        "instance_type": "t2.micro",
-        "region": "us-east-1",
-        "secret_key": "{{user `aws_secret_key`}}",
-        "source_ami": "{{user `aws-ami`}}",
-        "ssh_username": "centos",
-        "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
-        "type": "amazon-ebs",
-        "tags": {
-            "Based on ami id": "{{.SourceAMI}}",
-            "Produced by": "Atos SE",
-            "OS Type": "{{user `os`}}",
-            "OS Version": "{{user `os_version`}}",
-            "Processor Arch.": "amd64",
-            "Jenkins build number": "{{user `jenkins-build-no`}}",
-            "Jenkins build URL": "{{user `jenkins-build-url`}}",
-            "Git Commit": "{{user `git-commit`}}",
-            "Git URL": "{{user `git-url`}}"
+  "builders": [{
+    "type": "amazon-ebs",
+
+    "access_key": "{{user `aws_access_key`}}",
+    "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
+    "instance_type": "t2.micro",
+    "region": "us-east-1",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "source_ami": "{{user `aws-ami`}}",
+    "ssh_username": "{{user `ssh-user`}}",
+    "ami_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
+    "tags": {
+        "Based on ami id": "{{.SourceAMI}}",
+        "Produced by": "Atos SE",
+        "OS Type": "{{user `os`}}",
+        "OS Version": "{{user `os_version`}}",
+        "Processor Arch.": "amd64",
+        "Jenkins build number": "{{user `jenkins-build-no`}}",
+        "Jenkins build URL": "{{user `jenkins-build-url`}}",
+        "Git Commit": "{{user `git-commit`}}",
+        "Git URL": "{{user `git-url`}}"
         }
     },
     {
-      "type": "vsphere",
+    "type": "azure-arm",
 
-      "vcenter_server": "home.djsho.co.uk",
-      "username": "administrator@vsphere.local",
-      "password": "{{user `vsphere_password`}}",
-      "insecure_connection": true,
-      "datacenter": "AtosRemoteLab",
+    "client_id": "{{user `az_client_id`}}",
+    "client_secret": "{{user `az_client_secret`}}",
+    "resource_group_name": "packer",
+    "storage_account": "packerstorageatos",
+    "subscription_id": "{{user `az_sub_id`}}",
+    "tenant_id": "{{user `az_ten_id`}}",
+    "object_id": "{{user `az_obj_id`}}",
+    "capture_container_name": "images",
+    "capture_name_prefix": "packer",
+    "ssh_username": "{{user `ssh_user`}}",
+    "ssh_password": "{{user `ssh_pass`}}",
 
-      "template": "inno/CentOS-Template",
-      "vm_name": "accosia-build-{{isotime}}",
-      "folder": "inno",
-      "host": "172.16.10.11",
-      "resource_pool": "",
-      "datastore": "LocalLUN",
-      "linked_clone": false,
+    "os_type": "Linux",
+    "image_publisher": "OpenLogic",
+    "image_offer": "CentOS",
+    "image_sku": "7.3",
+    "image_version": "latest",
+    "ssh_pty": "true",
 
-      "CPUs": 2,
-      "CPU_reservation": 1000,
-      "CPU_limit": 2000,
-      "RAM": 8192,
-      "RAM_reservation": 2048,
+    "azure_tags": {
+        "dept": "engineering",
+         "Based on ami id": "{{.SourceAMI}}",
+        "Produced by": "Atos SE",
+        "OS Type": "{{user `os`}}",
+        "OS Version": "{{user `os_version`}}",
+        "Processor Arch.": "amd64",
+        "Jenkins build number": "{{user `jenkins-build-no`}}",
+        "Jenkins build URL": "{{user `jenkins-build-url`}}",
+        "Git Commit": "{{user `git-commit`}}",
+        "Git URL": "{{user `git-url`}}"
+        },
 
-      "ssh_username": "root",
-      "ssh_password": "{{user `guest_password`}}",
+    "location": "UK South",
+    "vm_size": "Standard_A2"
+    },
+    {
+    "type": "vsphere",
 
-      "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
-      "shutdown_timeout": "5m",
-      "create_snapshot": true,
-      "convert_to_template": true
-    }
-  ],
+    "vcenter_server": "home.djsho.co.uk",
+    "username": "administrator@vsphere.local",
+    "password": "{{user `vsphere_password`}}",
+    "insecure_connection": true,
+    "datacenter": "AtosRemoteLab",
 
-    "provisioners": [
-      {
-        "type": "shell",
-        "inline": [
-          "sleep 30",
-          "sudo yum update -y",
-          "sudo yum install git -y",
-          "sudo yum install epel-release -y",
-          "sudo yum install ansible -y",
-          "sudo ansible-galaxy install dev-sec.os-hardening -p /usr/share/ansible/roles/"
-        ]
-      },
-      {
-        "type": "ansible-local",
-          "playbook_file": "playbook.yml",
-          "playbook_dir": "/var/lib/jenkins/workspace/",
-          "staging_directory": "/tmp/accosia",
-          "command": "ansible-playbook"
-      }
+    "template": "inno/CentOS-Template",
+    "vm_name": "accosia-build-{{isotime}}",
+    "folder": "inno",
+    "host": "172.16.10.11",
+    "resource_pool": "",
+    "datastore": "LocalLUN",
+    "linked_clone": false,
+
+    "CPUs": 2,
+    "CPU_reservation": 1000,
+    "CPU_limit": 2000,
+    "RAM": 8192,
+    "RAM_reservation": 2048,
+
+    "ssh_username": "{{user `ssh-user`}}",
+    "ssh_password": "{{user `guest_password`}}",
+
+    "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
+    "shutdown_timeout": "5m",
+    "create_snapshot": true,
+    "convert_to_template": true
+  }],
+
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+        "sleep 30",
+        "sudo yum update -y",
+        "sudo yum install git -y",
+        "sudo yum install epel-release -y",
+        "sudo yum install ansible -y",
+        "sudo ansible-galaxy install dev-sec.os-hardening -p /usr/share/ansible/roles/"
     ]
+    },
+    {
+    "type": "ansible-local",
+    "playbook_file": "playbook.yml",
+    "playbook_dir": "/var/lib/jenkins/workspace/",
+    "staging_directory": "/tmp/accosia",
+    "command": "ansible-playbook"
+    },
+    {
+
+    "type": "shell",
+    "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "inline": [
+       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+    ],
+    "inline_shebang": "/bin/sh -x",
+    "only": ["azure-arm"]
+  }]
 }
