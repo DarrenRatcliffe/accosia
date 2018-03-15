@@ -1,18 +1,17 @@
 {
   "variables": {
+    "comp": "Atos",
     "os": "CentOS",
     "os_version": "7",
     "ssh_user": "centos",
-    "ssh_pass": "",
-    "vsphere_password": "Pass123!",
-    "guest_password": "Joanne!7"
+    "ssh_pass": ""
   },
 
   "builders": [{
     "type": "amazon-ebs",
 
     "access_key": "{{user `aws_access_key`}}",
-    "ami_name": "accosia-build-{{isotime | clean_ami_name}}",
+    "ami_name": "{{user `comp`}}-{{user `os`}} {{user `os_version`}}-{{timestamp}}",
     "instance_type": "t2.micro",
     "region": "us-east-1",
     "secret_key": "{{user `aws_secret_key`}}",
@@ -38,8 +37,9 @@
       "source_image_family": "centos-7",
       "ssh_username": "packer",
       "zone": "europe-west2-a",
-      "image_name": "accosia-build-{{timestamp}}",
-      "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}"
+      "image_name": "{{user `comp`}}-{{user `os`}} {{user `os_version`}}-{{timestamp}}",
+      "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}",
+      "image_family": "{{user `comp`}} {{user `os`}}"
     },
     {
     "type": "azure-arm",
@@ -87,7 +87,7 @@
     "datacenter": "AtosRemoteLab",
 
     "template": "inno/CentOS-Template",
-    "vm_name": "accosia-build-{{isotime}}",
+    "vm_name": "{{user `comp`}}-{{user `os`}} {{user `os_version`}}-{{timestamp}}",
     "folder": "inno",
     "host": "{{user `vc_host`}}",
     "resource_pool": "",
