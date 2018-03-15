@@ -36,18 +36,8 @@
       "source_image_family": "centos-7",
       "ssh_username": "packer",
       "zone": "europe-west2-a",
-      "image_labels":{
-        "Produced by": "Atos SE",
-        "OS Type": "{{user `os`}}",
-        "OS Version": "{{user `os_version`}}",
-        "Processor Arch.": "amd64",
-        "Jenkins build number": "{{user `jenkins-build-no`}}",
-        "Jenkins build URL": "{{user `jenkins-build-url`}}",
-        "Git Commit": "{{user `git-commit`}}",
-        "Git URL": "{{user `git-url`}}"
-        },
-        "image_name": "accosia-build-{{timestamp}}",
-        "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}"
+      "image_name": "accosia-build-{{timestamp}}",
+      "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}"
     },
     {
     "type": "azure-arm",
@@ -109,7 +99,7 @@
     "RAM_reservation": 2048,
 
     "ssh_username": "root",
-    "ssh_password": "{{user `vsphere_guest_pass`}}",
+    "ssh_password": "Joanne!7",
 
     "shutdown_command": "echo '{{user `vsphere_guest_pass`}}' | sudo -S shutdown -P now",
     "shutdown_timeout": "5m",
