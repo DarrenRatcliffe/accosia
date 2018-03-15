@@ -1,7 +1,5 @@
 {
   "variables": {
-    "vsphere_password": "Pass123!",
-    "guest_password": "Joanne!7",
     "os": "CentOS",
     "os_version": "7",
     "ssh_user": "centos",
@@ -72,16 +70,16 @@
     {
     "type": "vsphere",
 
-    "vcenter_server": "home.djsho.co.uk",
-    "username": "administrator@vsphere.local",
-    "password": "{{user `vsphere_password`}}",
+    "vcenter_server": "{{user `vc`}}",
+    "username": "{{user `vc_user`}}",
+    "password": "{{user `vsphere_pass`}}",
     "insecure_connection": true,
     "datacenter": "AtosRemoteLab",
 
     "template": "inno/CentOS-Template",
     "vm_name": "accosia-build-{{isotime}}",
     "folder": "inno",
-    "host": "172.16.10.11",
+    "host": "{{user `vc_host`}}",
     "resource_pool": "",
     "datastore": "LocalLUN",
     "linked_clone": false,
@@ -93,9 +91,9 @@
     "RAM_reservation": 2048,
 
     "ssh_username": "root",
-    "ssh_password": "{{user `guest_password`}}",
+    "ssh_password": "{{user `vsphere_guest_pass`}}",
 
-    "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
+    "shutdown_command": "echo '{{user `vsphere_guest_pass`}}' | sudo -S shutdown -P now",
     "shutdown_timeout": "5m",
     "create_snapshot": true,
     "convert_to_template": true
