@@ -30,6 +30,26 @@
         }
     },
     {
+      "type": "googlecompute",
+      "project_id": "packer-197811",
+      "account_file": "account.json",
+      "source_image_family": "centos-7",
+      "ssh_username": "packer",
+      "zone": "europe-west2-a",
+      "image_labels":{
+        "Produced by": "Atos SE",
+        "OS Type": "{{user `os`}}",
+        "OS Version": "{{user `os_version`}}",
+        "Processor Arch.": "amd64",
+        "Jenkins build number": "{{user `jenkins-build-no`}}",
+        "Jenkins build URL": "{{user `jenkins-build-url`}}",
+        "Git Commit": "{{user `git-commit`}}",
+        "Git URL": "{{user `git-url`}}"
+        },
+        "image_name": "accosia-build-{{isotime}}",
+        "image_description": "This is a certified Atos cloud image for {{user `os`}} {{user `os_version`}}"
+    },
+    {
     "type": "azure-arm",
 
     "client_id": "{{user `az_client_id`}}",
@@ -52,8 +72,6 @@
     "ssh_pty": "true",
 
     "azure_tags": {
-        "dept": "engineering",
-         "Based on ami id": "{{.SourceAMI}}",
         "Produced by": "Atos SE",
         "OS Type": "{{user `os`}}",
         "OS Version": "{{user `os_version`}}",
