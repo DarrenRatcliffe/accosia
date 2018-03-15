@@ -3,7 +3,9 @@
     "os": "CentOS",
     "os_version": "7",
     "ssh_user": "centos",
-    "ssh_pass": ""
+    "ssh_pass": "",
+    "vsphere_password": "Pass123!",
+    "guest_password": "Joanne!7"
   },
 
   "builders": [{
@@ -99,9 +101,9 @@
     "RAM_reservation": 2048,
 
     "ssh_username": "root",
-    "ssh_password": "Joanne!7",
+    "ssh_password": "{{user `guest_password`}}",
 
-    "shutdown_command": "echo '{{user `vsphere_guest_pass`}}' | sudo -S shutdown -P now",
+    "shutdown_command": "echo '{{user `guest_password`}}' | sudo -S shutdown -P now",
     "shutdown_timeout": "5m",
     "create_snapshot": true,
     "convert_to_template": true
