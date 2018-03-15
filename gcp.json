@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "googlecompute",
-      "project_id": "packer",
+      "project_id": "packer-197811",
       "account_file": "account.json",
       "source_image": "debian-7-wheezy-v20150127",
       "ssh_username": "packer",
