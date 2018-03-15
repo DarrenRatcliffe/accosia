@@ -127,6 +127,7 @@
        "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
     "inline_shebang": "/bin/sh -x",
+    "skip_clean": true,
     "only": ["azure-arm"]
   }]
 }
